@@ -122,7 +122,6 @@ def get_stats(labels):
 
 def print_stat_table(split_name, m0, m1, m2, m3, m4, m5, w0, w1, w2, w3, w4, w5):
     table_data=[
-        [split_name],
         ['class_count','Men','Women'],
         ['0',m0,w0],
         ['1',m1,w1],
@@ -131,7 +130,9 @@ def print_stat_table(split_name, m0, m1, m2, m3, m4, m5, w0, w1, w2, w3, w4, w5)
         ['4',m4,w4],
         ['5',m5,w5]
     ]
-    table = AsciiTable(table_data).table
+    table_obj = AsciiTable(table_data,split_name)
+    table_obj.inner_heading_row_border = True
+    table = table_obj.table 
     print(table)
 
 def get_split_stats(train_labels, test_labels, val_labels):
