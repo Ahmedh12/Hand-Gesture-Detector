@@ -60,7 +60,7 @@ def view_random_images(images, labels, num_images=5):
     fig.tight_layout()
     for i in range(num_images):
         index = random.randint(0, len(images))
-        axes[i].imshow(images[index], cmap='gray')
+        axes[i].imshow(images[index], cmap='binary')
         axes[i].set_title(labels[index])
     plt.show()
 

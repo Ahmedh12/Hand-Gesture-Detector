@@ -49,6 +49,9 @@ def svm_model(train_features, train_labels, test_features, test_labels):
     # Predict the labels of the test set: y_pred
     y_pred = best_grid.predict(test_features)
     # Compute and print metrics
+    print("Accuracy: \n{}".format(accuracy_score(test_labels, y_pred)))
+    print("Confusion Matrix: \n{}".format(confusion_matrix(test_labels, y_pred)))
+    print("Classification Report: \n{}".format(classification_report(test_labels, y_pred)))
     print("Accuracy: {}".format(accuracy_score(test_labels, y_pred)))
     print("Confusion Matrix: {}".format(confusion_matrix(test_labels, y_pred)))
     print("Classification Report: {}".format(
@@ -58,15 +61,6 @@ def svm_model(train_features, train_labels, test_features, test_labels):
 
 def nn_model(train_features, train_labels, test_features, test_labels):
 
-    train_labels = [t[1] for t in train_labels]
-    test_labels = [t[1] for t in test_labels]
-    train_labels = [eval(t) for t in train_labels]
-    test_labels = [eval(t) for t in test_labels]
-
-    train_features = np.array(train_features)
-    train_labels = np.array(train_labels)
-    test_features = np.array(test_features)
-    test_labels = np.array(test_labels)
 
     # Adding the input layer and the first hidden layer
     input = tf.keras.Input(shape=(train_features.shape[1],))
