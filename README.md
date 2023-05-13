@@ -31,10 +31,29 @@ learning pipeline.
         preprocessing.png
 ```
 ## ScreenShots 
-### Preprocessing
 
-### HOG Features
-<img src = "screenshots\HOG_features_2.png" >
+### Original VS Preprocessed Image
+<table>
+    <tr>
+        <td>
+            <img src = "screenshots\preprocessing.png" >
+        </td>
+    </tr>
+</table>
+
+### HOG Features in Preprocessed Image
+<table>
+    <tr>
+        <td>
+            <img src = "screenshots\HOG_features.png" >
+        </td>
+        <td>
+            <img src = "screenshots\HOG_features_2.png" >
+        </td>
+    </tr>
+</table>
+
+
 ## Results
 
 ## Collaborators
