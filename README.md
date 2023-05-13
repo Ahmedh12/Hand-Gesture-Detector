@@ -61,19 +61,23 @@ learning pipeline.
     2- Fully Connected Neural network
 
 - ### SVM
-        - Accuracy: 0.6906077348066298
-        - | class | precision | recall | f1-score | support |
-          |-------|-----------|--------|----------|---------|
-          | 0     | 0.92      | 0.96   | 0.94     | 25      |
-          | 1     | 0.62      | 0.88   | 0.72     | 24      |
-          | 2     | 0.66      | 0.54   | 0.59     | 35      |
-          | 3     | 0.51      | 0.57   | 0.54     | 35      |
-          | 4     | 0.67      | 0.50   | 0.57     | 28      |
-          | 5     | 0.84      | 0.79   | 0.82     | 34      |
+ SVM with RBF kernel<br>
+ Accuracy: 0.6906
+
+| class | precision | recall | f1-score | support |
+|-------|-----------|--------|----------|---------|
+| 0     | 0.92      | 0.96   | 0.94     | 25      |
+| 1     | 0.62      | 0.88   | 0.72     | 24      |
+| 2     | 0.66      | 0.54   | 0.59     | 35      |
+| 3     | 0.51      | 0.57   | 0.54     | 35      |
+| 4     | 0.67      | 0.50   | 0.57     | 28      |
+| 5     | 0.84      | 0.79   | 0.82     | 34      |
         
 
 - ### Neural Network
-        - Accuracy: 0.6575
+ Two layers deep fully connected Neural network <br>
+ Accuracy: 0.6575
+        
 ## Collaborators
 - [Ahmed Hussien](https://www.github.com/ahmedh12)
 - [Millania Sameh](https://www.github.com/)
