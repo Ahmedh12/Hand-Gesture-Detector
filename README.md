@@ -56,6 +56,15 @@ learning pipeline.
 
 ## Results
 
+    we have used two models , SVM and Fully Connected Neural network
+
+- ### SVM
+        - Accuracy: 0.6906077348066298
+        - |_|_|_|
+          | | | |
+
+- ### Neural Network
+        - Accuracy: 0.6575
 ## Collaborators
 - [Ahmed Hussien](https://www.github.com/ahmedh12)
 - [Millania Sameh](https://www.github.com/)
