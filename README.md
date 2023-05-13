@@ -5,8 +5,35 @@ In this project, We implement a Hand Gesture Recognition System.Given an image c
 learning pipeline.
 
 ## Directory Structure
-
+```bash
+│   .gitignore
+│   Project-Document.pdf
+│   project.ipynb
+│   README.md
+│   Tesis.pdf  
+│
+├───modules
+│       data.py
+│       display_image.py
+│       feature_extraction.py
+│       models.py
+│       preprocessing.py
+│       test_model.py
+│
+│
+├───out
+│       results.txt
+│       time.txt
+│
+└───screenshots
+        HOG_features.png
+        HOG_features_2.png
+        preprocessing.png
+```
 ## ScreenShots 
+### Preprocessing
+
+### HOG Features
 
 ## Results
 
