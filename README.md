@@ -76,7 +76,16 @@ learning pipeline.
 
 - ### Neural Network
  Two layers deep fully connected Neural network <br>
- Accuracy: 0.6575
+ Accuracy: 0.6464
+
+ | class | precision | recall | f1-score | support |
+|-------|-----------|--------|----------|---------|
+| 0     | 0.96      | 0.88   | 0.92     | 25      |
+| 1     | 0.55      | 0.71   | 0.62     | 24      |
+| 2     | 0.60      | 0.60   | 0.60     | 35      |
+| 3     | 0.55      | 0.49   | 0.52     | 35      |
+| 4     | 0.53      | 0.57   | 0.55     | 28      |
+| 5     | 0.77      | 0.71   | 0.74     | 34      |
         
 ## Collaborators
 - [Ahmed Hussien](https://www.github.com/ahmedh12)
