@@ -34,7 +34,7 @@ learning pipeline.
 ### Preprocessing
 
 ### HOG Features
-
+<img src = "screenshots\HOG_features_2.png" >
 ## Results
 
 ## Collaborators

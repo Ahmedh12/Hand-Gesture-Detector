@@ -57,7 +57,7 @@ def svm_model(train_features, train_labels, test_features, test_labels):
     return best_grid
 
 
-def nn_model(train_features, train_labels, test_features, test_labels , epochs=10):
+def nn_model(train_features, train_labels, test_features, test_labels , epochs=10 , num = 0):
     # Adding the input layer and the first hidden layer
     input_size = train_features.shape[1]
     inp = tf.keras.Input(shape=(input_size,))
@@ -69,7 +69,7 @@ def nn_model(train_features, train_labels, test_features, test_labels , epochs=1
     classifier = tf.keras.Model(inputs=inp, outputs=output)
     # Compiling the ANN
     early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss',mode='min' , patience=3 , verbose=1)
-    model_checkpoint = tf.keras.callbacks.ModelCheckpoint('models/nn_model.h5', save_best_only=True)
+    model_checkpoint = tf.keras.callbacks.ModelCheckpoint('models/nn_model'+str(num)+'.h5', save_best_only=True)
     classifier.compile(optimizer = 'adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
     # Fitting the ANN to the Training set
     classifier.fit(train_features, train_labels, batch_size=16,
