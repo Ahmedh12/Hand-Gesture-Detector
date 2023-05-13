@@ -10,17 +10,21 @@ def load_dataset(path):
     images = []
     labels = []
     print ("Loading dataset from " + path + " Folder...")
-    for folder in os.listdir(os.path.dirname(__file__) + '\\..\\' + path):
-        for cls in os.listdir(os.path.dirname(__file__) + '\\..\\' + path + '\\' + folder):
-            for image in os.listdir(os.path.dirname(__file__) + '\\..\\' + path + '\\' + folder + '\\' + cls):
+    abs_path = r"{}".format(os.path.dirname(__file__) + "\\..\\..\\" + path)
+    for folder in os.listdir(abs_path):
+        classes = r"{}".format(abs_path + "\\" + folder)
+        for cls in os.listdir(classes):
+            images_paths = r"{}".format(abs_path + '\\' + folder + '\\' + cls)
+            for image_path in os.listdir(images_paths):
                 try:
-                    img = cv2.imread(path + '\\' + folder + '\\' + cls + '\\' + image)
+                    img_path = r"{}".format(abs_path + '\\' + folder + '\\' + cls + '\\' + image_path)
+                    img = cv2.imread(img_path)
                     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
                     img = cv2.resize(img, (461,260))
                     images.append(img)
                     labels.append((folder, cls))
                 except Exception as e:
-                    print('Error loading image' , image)
+                    print('Error loading image' , img_path)
                     print(e)
     print ("Dataset loaded successfully") 
     return images, labels
@@ -66,25 +70,34 @@ def view_random_images(images, labels, num_images=5):
 
 
 # create a stratified test train val split
-def create_stratified_split(images, labels, test_size=0.2, val_size=0.2):
+def create_stratified_split(images, labels , efc_features , test_size=0.2, val_size=0.2):
     #create a stratified split
     train_images = []
+    train_efc_features = []
     train_labels = []
     test_images = []
+    test_efc_features = []
     test_labels = []
     val_images = []
+    val_efc_features = []
     val_labels = []
     for i in range(len(images)):
         if random.random() < test_size:
             test_images.append(images[i])
+            test_efc_features.append(efc_features[i])
             test_labels.append(labels[i])
         elif random.random() < val_size:
             val_images.append(images[i])
+            val_efc_features.append(efc_features[i])
             val_labels.append(labels[i])
         else:
             train_images.append(images[i])
+            train_efc_features.append(efc_features[i])
             train_labels.append(labels[i])
-    return train_images, train_labels, test_images, test_labels, val_images, val_labels
+
+
+
+    return train_images, train_efc_features, train_labels, test_images, test_efc_features, test_labels, val_images, val_efc_features, val_labels
 
 
 # get the split stats
@@ -121,14 +134,15 @@ def get_stats(labels):
     return m0,m1,m2,m3,m4,m5,w0,w1,w2,w3,w4,w5
 
 def print_stat_table(split_name, m0, m1, m2, m3, m4, m5, w0, w1, w2, w3, w4, w5):
+    total = m0+m1+m2+m3+m4+m5+w0+w1+w2+w3+w4+w5
     table_data=[
-        ['class_count','Men','Women'],
-        ['0',m0,w0],
-        ['1',m1,w1],
-        ['2',m2,w2],
-        ['3',m3,w3],
-        ['4',m4,w4],
-        ['5',m5,w5]
+        ['class_count','Men','Women' , 'Total' , 'percentage'],
+        ['0',m0,w0 , m0+w0 , round((m0+w0)/total,2)],
+        ['1',m1,w1 , m1+w1 , round((m1+w1)/total,2)],
+        ['2',m2,w2 , m2+w2 , round((m2+w2)/total,2)],
+        ['3',m3,w3 , m3+w3 , round((m3+w3)/total,2)],
+        ['4',m4,w4 , m4+w4 , round((m4+w4)/total,2)],
+        ['5',m5,w5 , m5+w5 , round((m5+w5)/total,2)],
     ]
     table_obj = AsciiTable(table_data,split_name)
     table_obj.inner_heading_row_border = True
