@@ -75,5 +75,11 @@ def nn_model(train_features, train_labels, test_features, test_labels , epochs=1
     classifier.fit(train_features, train_labels, batch_size=16,
                    epochs=epochs, validation_data=(test_features, test_labels)  , callbacks=[early_stopping , model_checkpoint])
     
-
+    # Predicting the Test set results
+    y_pred = classifier.predict(test_features)
+    y_pred = np.argmax(y_pred, axis=1)
+    # Compute and print metrics 
+    print("Accuracy: \n{}".format(accuracy_score(test_labels, y_pred)))
+    print("Confusion Matrix: \n{}".format(confusion_matrix(test_labels, y_pred)))
+    print("Classification Report: \n{}".format(classification_report(test_labels, y_pred)))
     return classifier
