@@ -60,18 +60,20 @@ def svm_model(train_features, train_labels, test_features, test_labels):
 def nn_model(train_features, train_labels, test_features, test_labels , epochs=10):
     # Adding the input layer and the first hidden layer
     input_size = train_features.shape[1]
-    input = tf.keras.Input(shape=(input_size,))
-    x1 = tf.keras.layers.Dense(input_size, activation=tf.nn.relu)(input)
+    inp = tf.keras.Input(shape=(input_size,))
+    x1 = tf.keras.layers.Dense(input_size, activation=tf.nn.leaky_relu)(inp)
     # Adding the second hidden layer
-    x2 = tf.keras.layers.Dense(input_size//2, activation=tf.nn.relu)(x1)
+    x2 = tf.keras.layers.Dense(input_size//2, activation=tf.nn.leaky_relu)(x1)
     # Adding the output layer
     output = tf.keras.layers.Dense(6, activation=tf.nn.softmax)(x2)
-    classifier = tf.keras.Model(inputs=input, outputs=output)
+    classifier = tf.keras.Model(inputs=inp, outputs=output)
     # Compiling the ANN
+    early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss',mode='min' , patience=3 , verbose=1)
+    model_checkpoint = tf.keras.callbacks.ModelCheckpoint('models/nn_model.h5', save_best_only=True)
     classifier.compile(optimizer = 'adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
     # Fitting the ANN to the Training set
-    classifier.fit(train_features, train_labels, batch_size=2,
-                   epochs=epochs, validation_data=(test_features, test_labels))
+    classifier.fit(train_features, train_labels, batch_size=16,
+                   epochs=epochs, validation_data=(test_features, test_labels)  , callbacks=[early_stopping , model_checkpoint])
     
 
     return classifier
