@@ -6,11 +6,24 @@ learning pipeline.
 
 ## Directory Structure
 ```bash
+C:.
 │   .gitignore
+│   instructions.txt
 │   Project-Document.pdf
 │   project.ipynb
 │   README.md
-│   Tesis.pdf  
+│   req.txt
+│   Tesis.pdf
+│
+├───features
+│       test_features.pkl
+│       train_features.pkl
+│       val_features.pkl
+│
+├───models
+│       nn_model4.h5
+│       pca4_n_components_0.5.sav
+│       svm_model4_best_acc_0.69.sav
 │
 ├───modules
 │       data.py
@@ -19,7 +32,6 @@ learning pipeline.
 │       models.py
 │       preprocessing.py
 │       test_model.py
-│
 │
 ├───out
 │       results.txt
