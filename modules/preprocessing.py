@@ -3,6 +3,9 @@
 import numpy as np
 import cv2
 
+from pyefd import elliptic_fourier_descriptors
+import numpy as np
+
 def preprocess_image(img):
     img_t = cv2.cvtColor(img, cv2.COLOR_BGR2YCrCb)[:,:,2]
 
@@ -22,7 +25,10 @@ def preprocess_image(img):
     img_t = np.zeros_like(img_t)
     cv2.drawContours(img_t, contours, -1, 255, 3)
 
-    return img_t
+    #Extract Elliptical Fourier Descriptors
+    coeffs = [elliptic_fourier_descriptors(np.squeeze(cnt), order=35).flatten()[3:] for cnt in contours]
+
+    return img_t , coeffs
 
 
 def preprocess_image_2(img):

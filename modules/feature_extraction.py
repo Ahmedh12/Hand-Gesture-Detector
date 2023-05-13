@@ -1,10 +1,11 @@
 #This module is responsible for extracting features from the binary images
 import cv2
 from sklearn.decomposition import PCA
-import numpy as np
 from modules.display_image import display_image
 from skimage.feature import hog
-import matplotlib.pyplot as plt
+import numpy
+from pyefd import elliptic_fourier_descriptors
+
 
 
 def extract_features(image):
@@ -23,14 +24,20 @@ def extract_features(image):
 def extract_features_skimage(image, orientation = 2, pixels_per_cell=(4, 2), cells_per_block=(3, 3)):
     # use hog from skimage
     # return the feature points only
-    features = hog(image, orientations= orientation, pixels_per_cell= pixels_per_cell, 
-                   cells_per_block= cells_per_block, visualize=False)
+    # features = hog(image, orientations= orientation, pixels_per_cell= pixels_per_cell, 
+    #                cells_per_block= cells_per_block, visualize=False)
+    
+    features = hog(image, visualize=False)
+    
+    
+    
     return features
 
 def visualize_HOG(image, orientation = 2, pixels_per_cell=(4, 2), cells_per_block=(3, 3)):
     # use hog from skimage
-    _, hog_image = hog(image, orientations= orientation, pixels_per_cell= pixels_per_cell, 
-                   cells_per_block= cells_per_block, visualize=True)
+    # _, hog_image = hog(image, orientations= orientation, pixels_per_cell= pixels_per_cell, 
+    #                cells_per_block= cells_per_block, visualize=True)
+    _, hog_image = hog(image, visualize=True)
     display_image(hog_image)
     display_image(image)
 
